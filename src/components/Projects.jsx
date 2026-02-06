@@ -47,9 +47,16 @@ const projects = [
         github: "#"
     },
     {
-        title: "Botrich",
+        title: "Botrich App",
         description: "Social platform for professionals. Features feeds, events, and real-time chat with multilingual support (English/Chinese).",
         tags: ["React Native", "Socket.io", "Redux-Saga", "Multilingual"],
+        link: "#",
+        github: "#"
+    },
+    {
+        title: "Botrich Web",
+        description: "A comprehensive web version of the Botrich social platform. built with Next.js for SSR, ensuring seamless synchronization with the mobile app via Socket.io.",
+        tags: ["Next.js", "Socket.io", "Redux-Saga", "Tailwind CSS"],
         link: "#",
         github: "#"
     },
