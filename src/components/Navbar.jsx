@@ -46,7 +46,7 @@ const Navbar = () => {
                         transition={{ delay: 0.5 }}
                         className="flex gap-4 ml-4"
                     >
-                        <a href="https://github.com" target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-white transition-colors"><Github size={20} /></a>
+                        <a href="https://github.com/Prince-AppsTango" target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-white transition-colors"><Github size={20} /></a>
                         <a href="https://www.linkedin.com/in/prince-yadav-%F0%9F%92%BB-6384b7201/" target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-white transition-colors"><Linkedin size={20} /></a>
                     </motion.div>
                 </div>
@@ -81,7 +81,7 @@ const Navbar = () => {
                                 </a>
                             ))}
                             <div className="flex gap-6 mt-4 pt-4 border-t border-zinc-800">
-                                <a href="#" className="text-zinc-400 hover:text-white"><Github size={20} /></a>
+                                <a href="https://github.com/Prince-AppsTango" target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-white"><Github size={20} /></a>
                                 <a href="https://www.linkedin.com/in/prince-yadav-%F0%9F%92%BB-6384b7201/" target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-white"><Linkedin size={20} /></a>
                                 <a href="#" className="text-zinc-400 hover:text-white"><Mail size={20} /></a>
                             </div>
