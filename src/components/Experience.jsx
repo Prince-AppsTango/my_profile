@@ -5,16 +5,10 @@ import { Briefcase } from 'lucide-react';
 // Data can be moved to a separate file later if it grows
 const experiences = [
     {
-        role: "Full Stack / Mobile Developer",
-        company: "Freelance / Self-employed", // Inferred from CV as specific company dates weren't explicit in extraction
-        period: "2020 - Present",
-        description: "Built complex mobile and web applications including Snappi (Uber-like), Upadr (Medical), and Botrich (Social)."
-    },
-    {
-        role: "Mobile App Developer",
-        company: "Projects",
-        period: "Various", // Placeholder
-        description: "Developed cross-platform solutions using React Native and Flutter. Integrated payments, maps, and real-time chat."
+        role: "Senior App + Front-End Developer",
+        company: "Ogma It Conceptions Pvt Ltd",
+        period: "01/2022 - Present",
+        description: "Started as a Junior Developer and rapidly progressed to a Senior role due to consistent high performance. Leading the development of complex cross-platform mobile apps (React Native/Flutter) and modern web frontends. Mentoring junior developers and architecting scalable solutions."
     }
 ];
 
