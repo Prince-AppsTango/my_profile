@@ -57,9 +57,11 @@ const Hero = () => {
                         }}>
                             View My Work <ArrowRight size={18} />
                         </Button>
-                        <Button variant="outline" onClick={() => window.open('/cv.pdf', '_blank')}>
-                            Download CV <Download size={18} />
-                        </Button>
+                        <a href="/cv.pdf" download="Prince_Kumar_Yadav_CV.pdf">
+                            <Button variant="outline">
+                                Download CV <Download size={18} />
+                            </Button>
+                        </a>
                     </div>
                 </motion.div>
 
