@@ -7,6 +7,7 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import ScrollToTop from './components/ui/ScrollToTop';
+import ChatBot from './components/ChatBot';
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -34,6 +35,7 @@ function App() {
       </main>
 
       <ScrollToTop />
+      <ChatBot />
 
       <footer className="py-8 text-center text-zinc-500 text-sm border-t border-zinc-800 bg-zinc-900/50">
         <p>© {new Date().getFullYear()} Prince Kumar Yadav. All rights reserved.</p>
