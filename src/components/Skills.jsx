@@ -2,8 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const skills = [
-    { category: "Mobile Dev", items: ["React Native", "Flutter", "Android (Kotlin)", "iOS"] },
-    { category: "Frontend", items: ["React.js", "Redux", "Redux-Saga", "Tailwind CSS"] },
+    { category: "Languages", items: ["JavaScript", "TypeScript", "Dart", "Kotlin"] },
+    { category: "Mobile Dev", items: ["React Native", "Flutter", "Android (Kotlin)"] },
+    { category: "Frontend", items: ["React.js", "Next.js", "Redux", "Redux-Saga", "Tailwind CSS"] },
     { category: "Backend & tools", items: ["Node.js", "Firebase", "Socket.io", "Git"] },
 ];
 
