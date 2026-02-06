@@ -5,6 +5,13 @@ import { ExternalLink, Github } from 'lucide-react';
 
 const projects = [
     {
+        title: "Credit Genius",
+        description: "Cross-platform financial credit management app built with Flutter. Features Speech-to-text, deep linking, local data persistence (Hive), and comprehensive Firebase integration.",
+        tags: ["Flutter", "BLoC", "Firebase", "RevenueCat", "Sentry"],
+        link: "#",
+        github: "#"
+    },
+    {
         title: "Sanjeevani",
         description: "Specialized Android application for hospital operations. Features appointment scheduling, multichannel consultations (chat/video), and live sessions with doctors.",
         tags: ["React Native", "Redux", "Agora", "Socket.io", "Firebase"],
@@ -25,6 +32,7 @@ const projects = [
         link: "#",
         github: "#"
     },
+    /*
     {
         title: "Snappi",
         description: "Uber-like taxi booking app for Android & iOS. Features real-time tracking, diverse vehicle options, and seamless payments.",
@@ -32,6 +40,7 @@ const projects = [
         link: "#",
         github: "#"
     },
+    */
     {
         title: "Simplify You",
         description: "Livestream platform for beauty parlours. Admins create courses/streams with monetization options and Apple Pay integration.",
