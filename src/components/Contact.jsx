@@ -4,6 +4,35 @@ import Button from './ui/Button';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
 const Contact = () => {
+    const [formStatus, setFormStatus] = React.useState('idle'); // idle, submitting, success, error
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setFormStatus('submitting');
+
+        const formData = new FormData(e.target);
+
+        try {
+            const response = await fetch("https://formsubmit.co/ajax/princekumary271@gmail.com", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(Object.fromEntries(formData))
+            });
+
+            if (response.ok) {
+                setFormStatus('success');
+                e.target.reset();
+            } else {
+                setFormStatus('error');
+            }
+        } catch (error) {
+            setFormStatus('error');
+        }
+    };
+
     return (
         <section id="contact" className="py-20 relative overflow-hidden">
             <div className="absolute inset-0 bg-primary/5 -z-10" />
@@ -39,13 +68,13 @@ const Contact = () => {
                                 <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-primary">
                                     <Mail size={20} />
                                 </div>
-                                <span>your.email@example.com</span>
+                                <a href="mailto:princekumary271@gmail.com" className="hover:text-primary transition-colors">princekumary271@gmail.com</a>
                             </div>
                             <div className="flex items-center gap-4 text-zinc-300">
                                 <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-primary">
                                     <Phone size={20} />
                                 </div>
-                                <span>+91 98765 43210</span>
+                                <a href="tel:+919330955959" className="hover:text-primary transition-colors">+91 9330955959</a>
                             </div>
                             <div className="flex items-center gap-4 text-zinc-300">
                                 <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-primary">
@@ -63,11 +92,17 @@ const Contact = () => {
                         viewport={{ once: true }}
                         className="glass p-8 rounded-2xl"
                     >
-                        <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                        <form className="space-y-4" onSubmit={handleSubmit}>
+                            {/* Hidden Helper for FormSubmit */}
+                            <input type="hidden" name="_subject" value="New Portfolio Contact Message!" />
+                            <input type="hidden" name="_captcha" value="false" />
+
                             <div>
                                 <label className="block text-sm font-medium text-zinc-400 mb-1">Name</label>
                                 <input
                                     type="text"
+                                    name="name"
+                                    required
                                     className="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors"
                                     placeholder="John Doe"
                                 />
@@ -76,6 +111,8 @@ const Contact = () => {
                                 <label className="block text-sm font-medium text-zinc-400 mb-1">Email</label>
                                 <input
                                     type="email"
+                                    name="email"
+                                    required
                                     className="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors"
                                     placeholder="john@example.com"
                                 />
@@ -83,14 +120,19 @@ const Contact = () => {
                             <div>
                                 <label className="block text-sm font-medium text-zinc-400 mb-1">Message</label>
                                 <textarea
+                                    name="message"
+                                    required
                                     rows={4}
                                     className="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors"
                                     placeholder="Tell me about your project..."
                                 />
                             </div>
-                            <Button type="submit" className="w-full">
-                                Send Message <Send size={18} />
+                            <Button type="submit" className="w-full" disabled={formStatus === 'submitting' || formStatus === 'success'}>
+                                {formStatus === 'submitting' ? 'Sending...' : formStatus === 'success' ? 'Message Sent!' : 'Send Message'}
+                                {formStatus === 'idle' && <Send size={18} />}
                             </Button>
+                            {formStatus === 'success' && <p className="text-green-400 text-sm text-center">Thanks! I'll get back to you soon.</p>}
+                            {formStatus === 'error' && <p className="text-red-400 text-sm text-center">Something went wrong. Please try again.</p>}
                         </form>
                     </motion.div>
                 </div>
