@@ -51,7 +51,8 @@ const ChatBot = () => {
     ]);
 
     try {
-      const res = await axios.post("http://localhost:3001/chat", {
+      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:3001";
+      const res = await axios.post(`${apiUrl}/chat`, {
         message: userMessage,
       });
 
@@ -133,11 +134,10 @@ const ChatBot = () => {
                   className={`flex ${msg.type === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <div
-                    className={`max-w-[80%] p-3 rounded-2xl text-sm ${
-                      msg.type === "user"
+                    className={`max-w-[80%] p-3 rounded-2xl text-sm ${msg.type === "user"
                         ? "bg-primary text-white rounded-br-none"
                         : "bg-zinc-800 text-zinc-200 rounded-bl-none border border-zinc-700"
-                    }`}
+                      }`}
                   >
                     {msg.isLoading ? (
                       <div className="flex gap-1 items-center py-1">
