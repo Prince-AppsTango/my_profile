@@ -33,34 +33,45 @@ const ChatBot = () => {
     return match ? match.response : defaultResponse;
   };
 
-const handleSend = async (e) => {
-  e.preventDefault();
-  if (!input.trim()) return;
+  const handleSend = async (e) => {
+    e.preventDefault();
+    if (!input.trim()) return;
 
-  try {
-    const res = await axios.post("http://localhost:3001/chat", {
-      message: input,
-    });
+    const userMessage = input;
 
-    console.log("Response from backend:", res.data);
-
-    setMessages(prev => [
-      ...prev,
-      { type: "user", text: input },
-      { type: "bot", text: res.data.reply }
-    ]);
-
+    // Immediately add user message and clear input
+    setMessages((prev) => [...prev, { type: "user", text: userMessage }]);
     setInput("");
 
-  } catch (error) {
-    console.error("Frontend Error:", error);
-
-    setMessages(prev => [
+    // Add loading indicator
+    const loadingId = Date.now();
+    setMessages((prev) => [
       ...prev,
-      { type: "bot", text: "Server error. Check backend." }
+      { type: "bot", text: "...", isLoading: true, id: loadingId },
     ]);
-  }
-};
+
+    try {
+      const res = await axios.post("http://localhost:3001/chat", {
+        message: userMessage,
+      });
+
+      console.log("Response from backend:", res.data);
+
+      // Remove loading indicator and add bot response
+      setMessages((prev) => [
+        ...prev.filter((msg) => msg.id !== loadingId),
+        { type: "bot", text: res.data.reply },
+      ]);
+    } catch (error) {
+      console.error("Frontend Error:", error);
+
+      // Remove loading indicator and add error message
+      setMessages((prev) => [
+        ...prev.filter((msg) => msg.id !== loadingId),
+        { type: "bot", text: "Server error. Check backend." },
+      ]);
+    }
+  };
 
   const [isVisible, setIsVisible] = useState(true);
 
@@ -128,11 +139,28 @@ const handleSend = async (e) => {
                         : "bg-zinc-800 text-zinc-200 rounded-bl-none border border-zinc-700"
                     }`}
                   >
-                    {msg.text.split("\n").map((line, i) => (
-                      <p key={i} className={i > 0 ? "mt-1" : ""}>
-                        {line}
-                      </p>
-                    ))}
+                    {msg.isLoading ? (
+                      <div className="flex gap-1 items-center py-1">
+                        <span
+                          className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce"
+                          style={{ animationDelay: "0ms" }}
+                        ></span>
+                        <span
+                          className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce"
+                          style={{ animationDelay: "150ms" }}
+                        ></span>
+                        <span
+                          className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce"
+                          style={{ animationDelay: "300ms" }}
+                        ></span>
+                      </div>
+                    ) : (
+                      msg.text.split("\n").map((line, i) => (
+                        <p key={i} className={i > 0 ? "mt-1" : ""}>
+                          {line}
+                        </p>
+                      ))
+                    )}
                   </div>
                 </div>
               ))}
